@@ -1,0 +1,28 @@
+{% extends 'home/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block navlinks %}
+<a href="{% url 'home' %}" class="nav-link nav-link-font">home</a>
+<a href="{% url 'about' %}" class="nav-link nav-link-font">about</a>
+<a href="portfolio.html" class="nav-link nav-link-font">portfolio</a>
+<a href="{% url 'forum' %}" class="nav-link nav-link-font">forum</a>
+<a href="{% url 'contact' %}" class="nav-link nav-link-font">contact</a>
+{% endblock navlinks %}
+
+{% block content %}
+
+    <div class="register-section flex-center">
+        <form method = "POST" class="form">
+            <h2>Log In</h2>
+            <div class="form-container">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button type="submit" class="register-btn">Sign In</button>
+            </div>
+            <a href="{% url 'register' %}">
+                <div class="login-p-register-btn register-btn">Register</div>
+            </a>
+        </form>
+    </div>
+
+{% endblock content %}

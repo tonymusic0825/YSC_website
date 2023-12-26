@@ -1,0 +1,91 @@
+{% extends 'home/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block navlinks %}
+<a href="{% url 'home' %}" class="nav-link nav-link-font">home</a>
+<a href="{% url 'about' %}" class="nav-link nav-link-font">about</a>
+<a href="portfolio.html" class="nav-link nav-link-font">portfolio</a>
+<a href="{% url 'forum' %}" class="nav-link nav-link-font">forum</a>
+<a href="{% url 'contact' %}" class="nav-link nav-link-font">contact</a>
+{% endblock navlinks %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'home/about.css' %}" />
+    <section class="profile-section">
+        <div class="profile-container">
+            <div class="profile-info">
+                <img src="{{ profile.image.url }}" alt="">
+                <h3 class="profile-name">{{ profile.user.first_name }} {{ profile.user.last_name }} ({{ profile.alias }})</h3>
+                <h4 class="profile-username">{{ profile.user.username }}</h4>
+                {% if profile.user.id == user.id %}
+                    <a href="{% url 'edit_profile' profile.user.id %}">
+                        <button class="edit-profile-btn">Edit Profile</button>
+                    </a>
+                {% endif %}
+                <p class="profile-bio">{{ profile.bio }}</p>
+                <i class="fa-regular fa-envelope">
+                    <span>&nbsp;&nbsp;{{ profile.user.email }}</span>
+                </i>
+                <br>
+                <i class="fa-solid fa-location-dot profile-location">
+                    <span>&nbsp;&nbsp;{{ profile.location }}</span>
+                </i>
+            </div>
+            <div class="profile-forum-posts">
+                <h2>{{ profile.user.username }}'s posts</h2>
+                {% for post in page_obj %}
+                    {% if post.author.id == profile.user.id %}
+                        <div class="post-container">
+                            <div class="author-image">
+                                <img src="{{ post.author.profile.image.url }}" alt="author-image">
+                            </div>
+                            <div class="post-content">
+                                <div class="info">
+                                    <a href="{% url 'profile' post.author.id %}" class="post-author">{{ post.author }}</a>
+                                    <small class="post-date">{{ post.date_posted }}</small>
+                                </div>
+                                <div class="title">
+                                    <a href="{% url 'show_post' post.id %}"><h3>{{ post.title }}</h3></a>
+                                </div>
+                                <div class="content">
+                                    <div>{{ post.content|truncatechars_html:100 }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                <!-- Pagination -->
+                <div class="pagination">
+                    {% if page_obj.has_previous %}
+                        <a href="?page=1"><button class="pagination-button">First</button></a>
+                        <a href="?page={{ page_obj.previous_page_number }}"><button class="pagination-button">Prev</button></a>
+                    {% endif %}
+
+                    {% for num in page_obj.paginator.page_range %}
+                        {% if page_obj.number == num %}
+                            <a href="?page={{ num }}"><button class="pagination-button current-page">{{ num }}</button></a>
+                        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                            <a href="?page={{ num }}"><button class="pagination-button">{{ num }}</button></a>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}"> <button class="pagination-button">Next</button> </a>
+                        <a href="?page={{ page_obj.paginator.num_pages }}"><button class="pagination-button">Last</button></a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}
+
+
+
+
+
+<!-- <div class="profile-section">
+    <img src="{{ profile.image.url }}" alt="">
+    <h2>{{ profile.user.username }}</h2>
+    <h2>{{ profile.user.email }}</h2>
+</div> -->
