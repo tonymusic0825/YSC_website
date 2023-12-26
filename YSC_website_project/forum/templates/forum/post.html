@@ -1,0 +1,39 @@
+{% extends "home/base.html" %}
+{% load static %}
+
+{% block navlinks %}
+    <a href="{% url 'home' %}" class="nav-link nav-link-font">home</a>
+    <a href="{% url 'about' %}" class="nav-link nav-link-font">about</a>
+    <a href="portfolio.html" class="nav-link nav-link-font">portfolio</a>
+    <a href="{% url 'forum' %}" class="nav-link nav-link-font"><span>forum</span></a>
+    <a href="{% url 'contact' %}" class="nav-link nav-link-font">contact</a>
+{% endblock navlinks %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'home/about.css' %}" />
+    <section class="single-post-section">
+        <div class="single-post-container">
+            <div class="single-post-author-container">
+                <img src="{{ post.author.profile.image.url }}" alt="author-image">
+                <div class="single-post-author-info">
+                    <h2>{{ post.author }}</h2>
+                    <a href="{% url 'profile' post.author.id %}">
+                        <button class="single-post-profile-btn">Visit Profile</button>
+                    </a>
+                    <p>{{ post.author.profile.bio }}</p>
+                </div>
+            </div>
+            <div class="single-post-content">
+                <h2>{{ post.title }}</h2>
+                {% if post.author.id == user.id %}
+                        <a href="{% url 'edit_post' post.id %}">
+                            <button class="edit-post-btn">Edit Post</button>
+                        </a>
+                {% endif %}
+                <small>Posted on {{ post.date_posted }}</small>
+                <p>{{ post.content|linebreaks}}</p>
+            </div>
+        </div>
+    </section>
+    
+{% endblock content %}

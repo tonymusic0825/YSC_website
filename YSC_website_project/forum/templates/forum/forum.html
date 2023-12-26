@@ -1,0 +1,69 @@
+{% extends "home/base.html" %}
+{% load static %}
+
+{% block navlinks %}
+    <a href="{% url 'home' %}" class="nav-link nav-link-font">home</a>
+    <a href="{% url 'about' %}" class="nav-link nav-link-font">about</a>
+    <a href="portfolio.html" class="nav-link nav-link-font">portfolio</a>
+    <a href="{% url 'forum' %}" class="nav-link nav-link-font"><span>forum</span></a>
+    <a href="{% url 'contact' %}" class="nav-link nav-link-font">contact</a>
+{% endblock navlinks %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'home/about.css' %}" />
+    <section class="forum-section">
+        <a href="{% url 'create_post' %}">
+            <button class="register-btn smaller-btn">Create Post</button>
+        </a>
+        {% for post in posts %}
+            <div class="post-container">
+                <div class="author-image">
+                    <img src="{{ post.author.profile.image.url }}" alt="author-image">
+                </div>
+                <div class="post-content">
+                    <div class="info">
+                        <a href="{% url 'profile' post.author.id %}" class="post-author">{{ post.author }}</a>
+                        <small class="post-date">{{ post.date_posted }}</small>
+                    </div>
+                    <div class="title">
+                        <a href="{% url 'show_post' post.id %}"><h3>{{ post.title }}</h3></a>
+                    </div>
+                    <div class="content">
+                        <div>{{ post.content|truncatechars_html:100 }}</div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+        <!-- Pagination -->
+        <div class="pagination">
+            {% if is_paginated %}
+                {% if page_obj.has_previous %}
+                    <a href="?page=1"><button class="pagination-button">First</button></a>
+                    <a href="?page={{ page_obj.previous_page_number }}"><button class="pagination-button">Prev</button></a>
+                {% endif %}
+
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                        <a href="?page={{ num }}"><button class="pagination-button current-page">{{ num }}</button></a>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                        <a href="?page={{ num }}"><button class="pagination-button">{{ num }}</button></a>
+                    {% endif %}
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}"> <button class="pagination-button">Next</button> </a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}"><button class="pagination-button">Last</button></a>
+                {% endif %}
+            {% endif %}
+        </div>
+
+
+
+    </section>
+{% endblock content %}
+
+<!-- <p>{{ post.author }}</p>
+    <p>{{ post.date_posted|date:"Y, M d" }}</p>
+    <p>{{ post.title }}</p>
+    <p>{{ post.content }}</p> -->
