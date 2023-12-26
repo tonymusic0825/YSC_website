@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YSC || Home</title>
+    <!-- normalize -->
+    <link rel="stylesheet" href="{% static 'home/normalize.css' %}" />
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="{% static 'home/fontawesome-free-6.4.0-web/css/all.css' %}">
+    <!-- Boostrap 4.0 -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+    <!-- main css -->
+    <link rel="stylesheet" href="{% static 'home/main.css' %}" />
+</head>
+<body>
+    <!-- Main -->
+    <main class="home">
+        <!-- Nav-bar -->
+        <nav class="nav-bar flex-center">
+            <div class="nav-center">
+                <!-- Header -->
+                <a href="{% url 'home' %}">
+                    <div class="nav-header .bg-cover-center">
+                    </div>
+                </a>
+                <!-- End of header -->
+                <!-- Nav links -->
+                <div class="nav-links flex-center">
+                    {% block navlinks %}
+                    {% endblock %}
+                    {% if user.is_authenticated %}
+                        <div class="user-logo flex-center" id="user-logo">
+                            <img src="{{ user.profile.image.url }}" alt="user-image" class="nav-profile-image">
+                            <p>&#9660;</p>
+                        </div>
+                        <div class="user-content">
+                            <div class="user-content-element">
+                                <a href="{% url 'profile' request.user.id %}">My Profile</a>
+                            </div>
+                            <div class="user-content-element">
+                                <a href="{% url 'logout' %}">Logout</a>
+                            </div>
+                        </div>
+                        <!-- <a href="{% url 'logout' %}"><button  class="login-btn nav-link-font">Logout</button></a> -->
+                    {% else %}
+                        <a href="{% url 'login' %}"><button  class="login-btn nav-link-font">Login</button></a>
+                    {% endif %}
+                </div>
+                <!-- End of nav links -->
+            </div>
+        </nav>
+        <!-- End of Nav-bar -->
+        <!-- Home section + flash messages-->
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    <div class="alert-center">
+                        <div>{{ message }}</div>
+                        <div class="close-alert">&times;</div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+        
+        {% block content %}{% endblock %} 
+        <!-- End of home section -->
+    </main>
+    <!-- End of Main -->
+    <!-- Footer -->
+    <footer class="page-footer flex-center">
+        <div class="footer-container">
+            <div class="footer-text">
+                <p>&copy; 
+                <span id="date"></span>
+                <span class="footer-logo">YSC</span>
+                Created by 
+                <a href="https://www.github.com/tonymusic0825">Youngsu Choi</a>
+                </p>
+            </div>
+            <div class="footer-icons grid-center">
+                <a href="https://www.github.com/tonymusic0825" class="footer-icon">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+                <a href="https://www.youtube.com/channel/UCZjacDjn8LvYng6AiSCkquA" class="footer-icon">
+                    <i class="fa-brands fa-youtube"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/youngsu-choi-b30697270/" class="footer-icon">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+    <!-- End of Footer -->
+    <script src="{% static 'js/app.js' %}"></script>
+</body>
+</html>

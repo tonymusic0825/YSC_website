@@ -1,0 +1,162 @@
+{% extends "home/base.html" %}
+{% load static %}
+
+{% block navlinks %}
+    <a href="{% url 'home' %}" class="nav-link nav-link-font">home</a>
+    <a href="{% url 'about' %}" class="nav-link nav-link-font"><span>about</span></a>
+    <a href="portfolio.html" class="nav-link nav-link-font">portfolio</a>
+    <a href="{% url 'forum' %}" class="nav-link nav-link-font">forum</a>
+    <a href="{% url 'contact' %}" class="nav-link nav-link-font">contact</a>
+{% endblock navlinks %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'home/about.css' %}" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <!-- About body -->
+    <div class="about-body">
+        <!-- Start of intro -->
+        <div class="about-intro">
+            <div class="about-intro-container">
+            <div class="intro-image-container">
+                <img src="{% static 'image/temp-about-intro.jpg' %}" alt="temp-about-intro" class="intro-image">
+            </div>
+            <div class="intro-text-container">
+                <h4>So, who am I?</h4>
+                <p>Hello! I'm Youngsu but you can just call me Tony. I'm currently 23 Y/O and a software engineer based in South Korea. My educational background is a combination of self-study and traditional schooling. I started my Bachelor of Computer Science degree at the University of Queensland (UQ) in 2019, but due to COVID-19 and my mandatory military services, my studies were put on hold. During this time, I dedicated myself to self-studying machine learning and artificial intelligence.</p>
+                <a href="{% url 'contact' %}">
+                <button class="contact-button">
+                    <i class="fa-regular fa-id-card"></i> &nbsp;
+                    Contact Me
+                </button>
+                </a>
+            </div>
+            </div>
+        </div>
+        <!-- End of intro -->
+        <!-- Start of mission -->
+        <div class="about-mission">
+            <div class="mission-text-container">
+            <p>"My mission is to enhance the user experience of everyday products and systems by incorporating artificial intelligence. I believe that AI has the potential to benefit any and all kinds of people over the world, and I'm passionate about contributing to this field."</p>
+            </div>
+        </div>
+        <!-- End of mission -->
+        <!-- Start of Story -->
+        <div class="about-story">
+            <!-- Start of text -->
+            <div class="about-story-container">
+            <h4>
+                How I got here...
+            </h4>
+            <p>
+                My interest in AI started in 2016, during the Alphago vs Lee Sedol match. Although I'm not a Go player myself, I was rooting for my fellow Korean player. It ended up as a bittersweet ending, as the person I was supporting had lost, but at the same time, it was awe-inspiring to witness technology of such caliber, the kind we've only seen in movies, the kind only existent in our imaginations, had finally emerged into the real world. I couldn't help but be fascinated by the technology that had made such a groundbreaking event possible. This experience truly solidified my desire to work with AI.
+            </p>
+            <p>
+                Now, despite being born in Korea, I spent my adolescent years studying abroad in Australia, where like many others growing up in the 21st century, I developed a passion for computers from a young age. Admittedly, most of my initial interest bloomed around video games, but it served as an important catalyst for my current path, even though I didn't end up pursuing game design.
+            </p>
+            <p>
+                Towards the end of my senior year in high school, my father suggested that I learn to code, and witnessing the connection between code and my passions was truly a significant eye-opener for me. Ever since, I have often reflected on my emotions while watching the Alphago event and envisioned the incredible possibilities of being involved in such innovative technology. This experience ultimately motivated me to apply for the Bachelor of Computer Science program at UQ in 2019.
+            </p>
+            <p>
+                Following a year of studying at university, I returned to Korea for the holidays and unfortunately, due to the COVID-19 pandemic, I was unable to continue my studies. Additionally, I was required to fulfill my military service obligations starting at the end of 2020. However, I have now successfully completed my mandatory national service and my plan is to resume my studies from 2024 and onwards.
+            </p>
+            </div>
+            <!-- End of Text -->
+            <!-- Start of goals -->
+        <div class="swiper-container">
+            <div class="swiper">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                    <!-- Slides -->
+                    <div class="swiper-slide">
+                        <div class="goal-container">
+                            <div class="goal">
+                                <div class="goal-image-container">
+                                    <img src="{% static 'image/goal1.jpg' %}" alt="" class="goal-image">
+                                </div>
+                                <div class="goal-text">
+                                    <h4>1. To be an engineer</h4>
+                                    <p>
+                                    I will consistently utilize analytical thinking when faced with challenges, in order to develop practical and effective solutions with lasting values.
+                                    </p>
+                                    <p>
+                                    I want to innovate, protect and improve lives, this is the job for me.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="goal-container">
+                            <div class="goal">
+                                <div class="goal-image-container">
+                                    <img src="{% static 'image/goal2.jpg' %}" alt="" class="goal-image">
+                                </div>
+                                <div class="goal-text">
+                                    <h4>2. To be part of a team</h4>
+                                    <p>
+                                    I aspire to be a valuable member of a team, commited to upholding important values.
+                                    </p>
+                                    <p>
+                                    Treating my team members with respect and clear communication are key values that i hold dear. 
+                                    </p>
+                                    <p>
+                                    I believe in working collaboratively and supporting the team to achieve our shared goals.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="goal-container">
+                            <div class="goal">
+                                <div class="goal-image-container">
+                                    <img src="{% static 'image/goal3.jpg' %}" alt="" class="goal-image">
+                                </div>
+                                <div class="goal-text">
+                                    <h4>3. I am and always will be a student</h4>
+                                    <p>
+                                    I have embraced the mindset of being a perpetual student. I have learned that there is no limit to what I can learn, and I strive to maintain a beginner's mindset.
+                                    </p>
+                                    <p>
+                                    I am always eager to experiment and create, without the fear of failure, in order to produce innovative and functional products.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="goal-container">
+                            <div class="goal">
+                                <div class="goal-image-container">
+                                    <img src="{% static 'image/goal4.jpg' %}" alt="" class="goal-image">
+                                </div>
+                                <div class="goal-text">
+                                    <h4>4. I'm here to be a leader</h4>
+                                    <p>
+                                    I hold the belief that as a leader, I can make a greater impact on those around me. 
+                                    </p>
+                                    <p>
+                                    It is also a chance for me to develop various skills and competencies. Additionally, it's always a pleasure in assisting others in their growth, and I believe that being a leader is crucial for facilitating such an environment. 
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- If we need pagination -->
+                <div class="swiper-pagination"></div>
+        
+                <!-- If we need navigation buttons -->
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+        </div>
+        <!-- End of goals -->
+        </div>
+        <!-- End of story -->
+    </div>
+    <!-- End of Main -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script src="{% static 'js/swiper.js' %}"></script>
+{% endblock content %}
+

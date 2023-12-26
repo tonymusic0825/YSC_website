@@ -1,0 +1,36 @@
+{% extends "home/base.html" %}
+{% load static %}
+
+{% block navlinks %}
+    <a href="{% url 'home' %}" class="nav-link nav-link-font"><span>home</span></a>
+    <a href="{% url 'about' %}" class="nav-link nav-link-font">about</a>
+    <a href="portfolio.html" class="nav-link nav-link-font">portfolio</a>
+    <a href="{% url 'forum' %}" class="nav-link nav-link-font">forum</a>
+    <a href="{% url 'contact' %}" class="nav-link nav-link-font">contact</a>
+{% endblock navlinks %}
+
+{% block content %}
+    <!-- Home section -->
+    <section>
+        <div class="main-section flex-center">
+            <div class="main-body-container grid-center">
+                <div class="main-body-text">
+                    <h4>Hello. I'm <span>Youngsu Choi</span>.</h4>
+                    <h4>An Aspiring <span>AI Engineer</span>,</h4>
+                    <h4>Based in <span>South Korea</span>...</h4>
+                    <p>Always ready to Learn, Apply and Create for the Future.</p>
+                    <div class="button-container">
+                        <a href="{% url 'about' %}">
+                            <button class="main-body-button">Learn More</button>
+                        </a>
+                    </div>
+                </div>
+                <div class="main-body-image flex-center">
+                    <div class="animation-circle"></div>
+                    <img src="{% static 'image/aiphoto.png' %}" alt="main-body-photo">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End of home section -->
+{% endblock content %}
