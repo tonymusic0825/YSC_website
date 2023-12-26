@@ -1,0 +1,96 @@
+/* old */
+.login-popup-container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0%;
+    background-color: blue;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    backdrop-filter: blur(20px);
+    visibility: hidden;
+}
+
+.login-popup-container.active {
+    visibility: visible;
+}
+
+.login-popup {
+    position: relative;
+    font-family: var(--font-poppins);
+    width: 400px;
+    height: 440px;
+    padding: 20px 30px;
+    border-radius: 10px;
+    border: 2px solid rgba(255, 255, 255, .5);
+    background:white;
+}
+
+.login-popup .close-btn {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 15px;
+    background: #fff;
+    text-align: center;
+    line-height: 15px;
+    font-size: 20px;
+    border: 15px;
+    cursor:pointer;
+}
+
+.login-popup .form h2 {
+    text-align: center;
+    color: #222;
+    margin: 10px 0px 20px;
+    font-size: 25px;
+}
+
+.login-popup .form .form-element {
+    margin: 15px 0px;
+}
+
+.login-popup .form .form-element label {
+    font-size: 14px;
+    color: #222;
+}
+
+.login-popup .form .form-element input[type='text'],
+.login-popup .form .form-element input[type='password'] {
+    margin-top: 5px;
+    display:block;
+    width: 100%;
+    padding: 10px;
+    outline: none;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+}
+
+.login-popup .form .form-element input[type='checkbox'] {
+    margin-right: 5px;
+}
+
+.login-popup .form .form-element button {
+    color:white;
+    width: 100%;
+    height: 40px;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    background: var(--light-black);
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom: -10px;
+}
+
+.login-popup .form .form-element a {
+    display: block;
+    text-align: right;
+    font-size: 15px;
+    color: var(--Orange);
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: 40px;
+}
