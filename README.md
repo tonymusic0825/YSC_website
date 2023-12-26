@@ -8,6 +8,8 @@ I made this website purely for enjoyment, self-learning, and as a platform to sh
 For server programming the Python language along with the Django Framwork was used.
 For the website-side I used Javascript, CSS3 and Html5
 
+**DID NOT UPLOADE FONT-AWESOME SINCE THE FILE IS TOO BIG**
+
 # Website 
 
 **Home:**
@@ -29,3 +31,4 @@ NOT YET IMPLEMENTED.
 - In addition to creating personal accounts people will have access to view your profile which you can
   edit to show more information about yourself.
 - Also able to see the particular person's past posts within their profiles.
+
